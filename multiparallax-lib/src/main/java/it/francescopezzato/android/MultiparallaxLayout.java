@@ -10,6 +10,8 @@ import android.widget.FrameLayout;
 
 import it.francescopezzato.android.multiparallax_lib.R;
 
+import static it.francescopezzato.android.ViewTreeWalker.newTreeWalker;
+
 /**
  * Created by francesco on 22/03/2015.
  */
@@ -69,11 +71,13 @@ public class MultiparallaxLayout extends FrameLayout {
 	protected void onLayout(boolean changed, int left, int top, int right, int bottom) {
 		super.onLayout(changed, left, top, right, bottom);
 
+		for (View view : newTreeWalker().flat(this)) {
+			updateLayout(view);
+		}
 
 	}
 
-	private void setOffsetY(int offsetY) {
-		//this.invalidate();
+	public void setOffsetY(int offsetY) {
 		if (offsetY != mOffsetY) {
 			invalidate();
 			requestLayout();
