@@ -24,4 +24,7 @@ dependencies {
     compile 'com.android.support:appcompat-v7:21.0.3'
 
     compile 'io.reactivex:rxandroid:0.24.0'
+    compile 'com.squareup.picasso:picasso:2.5.2'
+
+    compile project(':multiparallax-lib')
 }

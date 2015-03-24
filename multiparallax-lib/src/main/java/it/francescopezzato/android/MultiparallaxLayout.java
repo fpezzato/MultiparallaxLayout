@@ -3,6 +3,7 @@ package it.francescopezzato.android;
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.util.SparseArray;
 import android.view.View;
 import android.view.ViewGroup;
@@ -22,12 +23,8 @@ public class MultiparallaxLayout extends FrameLayout {
 	private void updateLayout(View view) {
 		if (view.getLayoutParams() instanceof LayoutParams) {
 			LayoutParams layoutParams = (LayoutParams) view.getLayoutParams();
-			float newOffset = mOffsetY * layoutParams.ratio;
-			int left = view.getLeft();
-			int top = view.getTop();
-			int right = view.getRight();
-			int bottom = view.getBottom();
-			view.layout(left, top + (int) newOffset, right, bottom + (int) newOffset);
+			float newOffset = mOffsetY * layoutParams.ratioY;
+			view.setTranslationY( (int) newOffset);
 		}
 	}
 
@@ -66,12 +63,13 @@ public class MultiparallaxLayout extends FrameLayout {
 		}
 
 	}
-
+	ViewTreeWalker treeWalker = newTreeWalker();
 	@Override
 	protected void onLayout(boolean changed, int left, int top, int right, int bottom) {
 		super.onLayout(changed, left, top, right, bottom);
 
-		for (View view : newTreeWalker().flat(this)) {
+
+		for (View view : treeWalker.flat(this)) {
 			updateLayout(view);
 		}
 
@@ -79,17 +77,21 @@ public class MultiparallaxLayout extends FrameLayout {
 
 	public void setOffsetY(int offsetY) {
 		if (offsetY != mOffsetY) {
-			invalidate();
+			//invalidate();
+			Log.i("->", mOffsetY + " mOffsetY y");
 			requestLayout();
+			/*for (View view : treeWalker.flat(this)) {
+				updateLayout(view);
+			}*/
+
+
+
 		}
 		this.mOffsetY = offsetY;
 	}
 
 	public static class LayoutParams extends FrameLayout.LayoutParams {
-
-
-		public float ratio;
-
+		public float ratioY;
 		public LayoutParams(ViewGroup.LayoutParams source) {
 			super(source);
 		}
@@ -104,7 +106,7 @@ public class MultiparallaxLayout extends FrameLayout {
 				int attr = a.getIndex(i);
 				switch (Attribute.from(attr)) {
 					case RATIO_Y:
-						ratio = a.getFloat(attr, 1);
+						ratioY = a.getFloat(attr, 1);
 						break;
 				}
 			}

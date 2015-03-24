@@ -23,7 +23,7 @@ public class ListAdapter extends BindableAdapter<String> {
 	private List<String> mData = new ArrayList();
 
 	public ListAdapter(Context context) {
-		super(context);
+	     	super(context);
 	}
 
 	@Override

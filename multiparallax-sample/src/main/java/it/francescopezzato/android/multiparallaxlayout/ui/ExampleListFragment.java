@@ -3,12 +3,12 @@ package it.francescopezzato.android.multiparallaxlayout.ui;
 import android.os.Bundle;
 import android.support.v4.app.ListFragment;
 import android.view.View;
+import android.widget.AbsListView;
 
+import it.francescopezzato.android.MultiparallaxLayout;
+import it.francescopezzato.android.multiparallaxlayout.R;
 import it.francescopezzato.android.multiparallaxlayout.data.DataGenerator;
 import rx.Observable;
-import rx.android.widget.OnListViewScrollEvent;
-import rx.android.widget.WidgetObservable;
-import rx.functions.Action1;
 
 import static rx.android.app.AppObservable.bindFragment;
 
@@ -19,29 +19,43 @@ public class ExampleListFragment extends ListFragment {
 
 	ListAdapter mAdapter;
 
+	MultiparallaxLayout mHeader;
+
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
-
 		super.onCreate(savedInstanceState);
-
-
 	}
-
 
 	@Override
 	public void onViewCreated(View view, Bundle savedInstanceState) {
 		super.onViewCreated(view, savedInstanceState);
-		Observable<OnListViewScrollEvent> listViewScrollEventObservable = WidgetObservable.listScrollEvents(getListView());
-		bindFragment(this, listViewScrollEventObservable)
-			.subscribe(new Action1<OnListViewScrollEvent>() {
-				@Override
-				public void call(OnListViewScrollEvent event) {
-
-				}
-			});
-
 		mAdapter = new ListAdapter(getActivity());
+
+		mHeader = (MultiparallaxLayout) getActivity().getLayoutInflater().inflate(R.layout.list_header, getListView(), false);
+		getListView().addHeaderView(mHeader);
+
 		setListAdapter(mAdapter);
+
+		getListView().setOnScrollListener(new AbsListView.OnScrollListener() {
+			@Override
+			public void onScrollStateChanged(AbsListView view, int scrollState) {
+
+			}
+
+			@Override
+			public void onScroll(AbsListView view, int firstVisibleItem, int visibleItemCount, int totalItemCount) {
+				if (firstVisibleItem == 0) {
+					View firstChildView = getListView().getChildAt(0);
+					if (firstChildView != null) {
+						int scrollY = -firstChildView.getTop();
+						if (mHeader != null) {
+							mHeader.setOffsetY(scrollY);
+						}
+					}
+				}
+
+			}
+		});
 	}
 
 	@Override

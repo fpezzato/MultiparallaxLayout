@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<it.francescopezzato.android.MultiparallaxLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:multiparallax="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/list_header_height">
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/list_header_height"
+        android:background="@drawable/pattern"
+        multiparallax:ratioY="0.9"
+        />
+    <View
+        android:layout_marginTop="40dp"
+        android:layout_marginLeft="40dp"
+        android:layout_width="34dp"
+        android:layout_height="34dp"
+        android:background="@android:color/holo_red_dark"
+        multiparallax:ratioY="0.6"
+        />
+
+</it.francescopezzato.android.MultiparallaxLayout>
