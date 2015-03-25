@@ -2,23 +2,66 @@
 <it.francescopezzato.android.MultiparallaxLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:multiparallax="http://schemas.android.com/apk/res-auto"
-    android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="@dimen/list_header_height">
+    android:layout_height="@dimen/list_header_height"
+    >
 
     <View
         android:layout_width="match_parent"
-        android:layout_height="@dimen/list_header_height"
-        android:background="@drawable/pattern"
+        android:layout_height="match_parent"
+        android:background="@drawable/bg_snake"
         multiparallax:ratioY="0.9"
         />
+
+
     <View
-        android:layout_marginTop="40dp"
-        android:layout_marginLeft="40dp"
+        android:id="@+id/box_1"
         android:layout_width="34dp"
         android:layout_height="34dp"
         android:background="@android:color/holo_red_dark"
+        android:layout_alignTop="@+id/box_central"
+        android:layout_toLeftOf="@+id/box_central"
+        android:layout_toStartOf="@+id/box_central"
         multiparallax:ratioY="0.6"
+
         />
+
+    <View
+        android:id="@+id/box_central"
+        android:layout_width="34dp"
+        android:layout_height="34dp"
+        android:background="@android:color/holo_blue_light"
+        multiparallax:ratioY="0.7"
+        android:layout_centerInParent="true"
+        />
+
+    <View
+        android:id="@+id/box_3"
+        android:layout_width="34dp"
+        android:layout_height="34dp"
+        android:background="@android:color/holo_red_dark"
+        android:layout_alignTop="@+id/box_central"
+        android:layout_toRightOf="@+id/box_central"
+        android:layout_toEndOf="@+id/box_central"
+        multiparallax:ratioY="0.8"
+
+        />
+
+    <!--    <View
+            android:id="@+id/box_3"
+            android:layout_width="34dp"
+            android:layout_height="34dp"
+            android:background="@android:color/holo_blue_light"
+            multiparallax:ratioY="0.8"
+            android:layout_alignParentBottom="true"
+            android:layout_toRightOf="@id/box_2"
+            android:layout_toEndOf="@id/box_2"
+            />-->
+
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/gradient"/>
 
 </it.francescopezzato.android.MultiparallaxLayout>
