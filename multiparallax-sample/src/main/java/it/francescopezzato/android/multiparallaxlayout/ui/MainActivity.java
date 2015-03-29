@@ -3,8 +3,11 @@ package it.francescopezzato.android.multiparallaxlayout.ui;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.widget.Toolbar;
+import android.text.Html;
 import android.view.Menu;
 import android.view.MenuItem;
+
+import com.afollestad.materialdialogs.MaterialDialog;
 
 import it.francescopezzato.android.multiparallaxlayout.R;
 
@@ -33,16 +36,21 @@ public class MainActivity extends ActionBarActivity {
 
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
-		// Handle action bar item clicks here. The action bar will
-		// automatically handle clicks on the Home/Up button, so long
-		// as you specify a parent activity in AndroidManifest.xml.
 		int id = item.getItemId();
 
-		//noinspection SimplifiableIfStatement
 		if (id == R.id.action_settings) {
+			about();
 			return true;
 		}
-
 		return super.onOptionsItemSelected(item);
+	}
+
+	private void about(){
+		CharSequence content = Html.fromHtml(getString(R.string.dialog_about_content));
+		new MaterialDialog.Builder(this)
+			.title(R.string.dialog_about_title)
+			.content(content)
+			.positiveText(R.string.dialog_about_positive)
+			.show();
 	}
 }

@@ -1,6 +1,5 @@
 package it.francescopezzato.android.multiparallaxlayout.ui;
 
-import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
@@ -16,19 +15,20 @@ import it.francescopezzato.android.MultiparallaxLayout;
 import it.francescopezzato.android.multiparallaxlayout.R;
 import it.francescopezzato.android.multiparallaxlayout.data.DataGenerator;
 import rx.Observable;
-
-import static rx.android.app.AppObservable.bindFragment;
+import rx.android.app.AppObservable;
 
 /**
  * Created by francesco on 22/03/2015.
  */
 public class ExampleListFragment extends Fragment {
 
-	ListView mListView;
-	ListAdapter mAdapter;
+	private static final String KEY_LATEST_ALPHA = "KEY_LATEST_ALPHA";
+	private ListView mListView;
+	private ListAdapter mAdapter;
 
-	MultiparallaxLayout mHeader;
-	Drawable mToolbarBackground;
+	private MultiparallaxLayout mHeader;
+	private Drawable mToolbarBackground;
+	private int mAlpha;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -46,7 +46,13 @@ public class ExampleListFragment extends Fragment {
 	public void onViewCreated(View view, Bundle savedInstanceState) {
 		super.onViewCreated(view, savedInstanceState);
 
-		mToolbarBackground = new ColorDrawable(Color.RED);
+		mToolbarBackground = new ColorDrawable(getResources().getColor(R.color.green_1));
+
+		int alpha = 0;
+		if (savedInstanceState != null && savedInstanceState.containsKey(KEY_LATEST_ALPHA)) {
+			alpha = savedInstanceState.getInt(KEY_LATEST_ALPHA);
+		}
+		mToolbarBackground.setAlpha(alpha);
 		((ActionBarActivity) getActivity()).getSupportActionBar().setBackgroundDrawable(mToolbarBackground);
 
 		mAdapter = new ListAdapter(getActivity());
@@ -55,6 +61,7 @@ public class ExampleListFragment extends Fragment {
 		mListView.addHeaderView(mHeader);
 
 		mListView.setAdapter(mAdapter);
+
 
 		mListView.setOnScrollListener(new AbsListView.OnScrollListener() {
 			@Override
@@ -69,14 +76,19 @@ public class ExampleListFragment extends Fragment {
 					if (firstChildView != null) {
 						float scrollY = -firstChildView.getTop();
 						if (mHeader != null) {
-							mHeader.setOffsetY((int)scrollY);
+
+							//'parallax' bit: inform the MultiparallaxLayout of the current offset
+							mHeader.setOffsetY((int) scrollY);
+
+							//Toolbar transparency
 							if (firstChildView.getTop() < 0) {
 								int actionBarHeight = 0;
 								if (getActivity() instanceof ActionBarActivity) {
 									actionBarHeight = ((ActionBarActivity) getActivity()).getSupportActionBar().getHeight();
 								}
-								float ratiod4 = clamp(scrollY / (mHeader.getHeight() - actionBarHeight), 0f, 1f);
-								mToolbarBackground.setAlpha((int) (ratiod4 * 255));
+								float ratio = clamp(scrollY / (mHeader.getHeight() - actionBarHeight), 0f, 1f);
+								mAlpha = (int) (ratio * 255);
+								mToolbarBackground.setAlpha(mAlpha);
 							}
 						}
 					}
@@ -90,11 +102,17 @@ public class ExampleListFragment extends Fragment {
 	}
 
 	@Override
-	public void onResume() {
-		super.onResume();
+	public void onStart() {
+		super.onStart();
 		Observable<String> demoData = new DataGenerator().getDemoData();
-		mAdapter.replace(bindFragment(this, demoData));
+		mAdapter.replace(AppObservable.bindFragment(this, demoData));
+	}
+ 
 
+	@Override
+	public void onSaveInstanceState(Bundle outState) {
+		super.onSaveInstanceState(outState);
+		outState.putInt(KEY_LATEST_ALPHA,mAlpha);
 	}
 
 	private static float clamp(float val, float min, float max) {

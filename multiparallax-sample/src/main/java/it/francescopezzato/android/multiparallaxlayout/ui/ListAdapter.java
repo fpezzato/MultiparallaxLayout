@@ -54,6 +54,7 @@ public class ListAdapter extends BindableAdapter<String> {
 
 	public void replace(Observable<String> dataGenerator){
 		mData.clear();
+		notifyDataSetChanged();
 		dataGenerator
 			.subscribeOn(Schedulers.newThread())
 			.observeOn(AndroidSchedulers.mainThread())

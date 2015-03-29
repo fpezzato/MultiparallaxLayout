@@ -6,62 +6,42 @@
     android:layout_height="@dimen/list_header_height"
     >
 
-    <View
+    <ImageView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@drawable/bg_snake"
+        android:src="@drawable/bg_snake"
+        android:scaleType="centerCrop"
         multiparallax:ratioY="0.9"
         />
-
-
-    <View
-        android:id="@+id/box_1"
-        android:layout_width="34dp"
-        android:layout_height="34dp"
-        android:background="@android:color/holo_red_dark"
-        android:layout_alignTop="@+id/box_central"
-        android:layout_toLeftOf="@+id/box_central"
-        android:layout_toStartOf="@+id/box_central"
-        multiparallax:ratioY="0.6"
-
-        />
-
-    <View
-        android:id="@+id/box_central"
-        android:layout_width="34dp"
-        android:layout_height="34dp"
-        android:background="@android:color/holo_blue_light"
-        multiparallax:ratioY="0.7"
-        android:layout_centerInParent="true"
-        />
-
-    <View
-        android:id="@+id/box_3"
-        android:layout_width="34dp"
-        android:layout_height="34dp"
-        android:background="@android:color/holo_red_dark"
-        android:layout_alignTop="@+id/box_central"
-        android:layout_toRightOf="@+id/box_central"
-        android:layout_toEndOf="@+id/box_central"
-        multiparallax:ratioY="0.8"
-
-        />
-
-    <!--    <View
-            android:id="@+id/box_3"
-            android:layout_width="34dp"
-            android:layout_height="34dp"
-            android:background="@android:color/holo_blue_light"
-            multiparallax:ratioY="0.8"
-            android:layout_alignParentBottom="true"
-            android:layout_toRightOf="@id/box_2"
-            android:layout_toEndOf="@id/box_2"
-            />-->
-
 
     <View
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@drawable/gradient"/>
+
+    <TextView
+        style="@style/Base.TextAppearance.AppCompat.Headline"
+        android:id="@+id/list_header_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/fragment_list_header_title"
+        android:textColor="@android:color/white"
+        android:layout_centerHorizontal="true"
+        android:layout_above="@+id/list_header_subtitle"
+        multiparallax:ratioY="0.5"
+        />
+
+    <TextView
+        style="@style/Base.TextAppearance.AppCompat.Body1"
+        android:id="@+id/list_header_subtitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:text="@string/fragment_list_header_subtitle"
+        android:textColor="@android:color/white"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="25dp"
+        multiparallax:ratioY="0.6"
+        />
 
 </it.francescopezzato.android.MultiparallaxLayout>
