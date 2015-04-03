@@ -22,7 +22,6 @@ import rx.android.app.AppObservable;
  */
 public class ExampleListFragment extends Fragment {
 
-	private static final String KEY_LATEST_ALPHA = "KEY_LATEST_ALPHA";
 	private ListView mListView;
 	private ListAdapter mAdapter;
 
@@ -49,9 +48,6 @@ public class ExampleListFragment extends Fragment {
 		mToolbarBackground = new ColorDrawable(getResources().getColor(R.color.green_1));
 
 		int alpha = 0;
-		if (savedInstanceState != null && savedInstanceState.containsKey(KEY_LATEST_ALPHA)) {
-			alpha = savedInstanceState.getInt(KEY_LATEST_ALPHA);
-		}
 		mToolbarBackground.setAlpha(alpha);
 		((ActionBarActivity) getActivity()).getSupportActionBar().setBackgroundDrawable(mToolbarBackground);
 
@@ -62,11 +58,12 @@ public class ExampleListFragment extends Fragment {
 
 		mListView.setAdapter(mAdapter);
 
-
+		//The current implementation of WidgetObservable.listScrollEvents() has a too low event reporting ratio.
+		//Let's go to the bare metal:
 		mListView.setOnScrollListener(new AbsListView.OnScrollListener() {
 			@Override
 			public void onScrollStateChanged(AbsListView view, int scrollState) {
-
+				//nop
 			}
 
 			@Override
@@ -92,11 +89,7 @@ public class ExampleListFragment extends Fragment {
 							}
 						}
 					}
-
-
 				}
-
-
 			}
 		});
 	}
@@ -106,13 +99,6 @@ public class ExampleListFragment extends Fragment {
 		super.onStart();
 		Observable<String> demoData = new DataGenerator().getDemoData();
 		mAdapter.replace(AppObservable.bindFragment(this, demoData));
-	}
- 
-
-	@Override
-	public void onSaveInstanceState(Bundle outState) {
-		super.onSaveInstanceState(outState);
-		outState.putInt(KEY_LATEST_ALPHA,mAlpha);
 	}
 
 	private static float clamp(float val, float min, float max) {

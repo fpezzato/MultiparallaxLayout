@@ -23,7 +23,7 @@ public class MainActivity extends ActionBarActivity {
 			setSupportActionBar(toolbar);
 		}
 		getSupportFragmentManager()
-			.beginTransaction().replace(R.id.content_container,new ExampleListFragment()).commit();
+			.beginTransaction().replace(R.id.content_container, new ExampleListFragment()).commit();
 	}
 
 
@@ -45,12 +45,14 @@ public class MainActivity extends ActionBarActivity {
 		return super.onOptionsItemSelected(item);
 	}
 
-	private void about(){
+	private void about() {
 		CharSequence content = Html.fromHtml(getString(R.string.dialog_about_content));
+
 		new MaterialDialog.Builder(this)
 			.title(R.string.dialog_about_title)
 			.content(content)
 			.positiveText(R.string.dialog_about_positive)
 			.show();
+
 	}
 }

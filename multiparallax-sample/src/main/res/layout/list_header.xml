@@ -11,13 +11,17 @@
         android:layout_height="match_parent"
         android:src="@drawable/bg_snake"
         android:scaleType="centerCrop"
-        multiparallax:ratioY="0.9"
+        multiparallax:ratioY="0.85"
         />
+
+
 
     <View
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@drawable/gradient"/>
+        android:background="@drawable/gradient"
+        android:layout_alignParentBottom="true"
+        />
 
     <TextView
         style="@style/Base.TextAppearance.AppCompat.Headline"
@@ -43,5 +47,21 @@
         android:layout_marginBottom="25dp"
         multiparallax:ratioY="0.6"
         />
+
+    <TextView
+        style="@style/Base.TextAppearance.AppCompat.Headline"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:background="@drawable/header_logo_background"
+        multiparallax:ratioY="-0.3"
+        android:gravity="center"
+        android:text="S"
+        android:textColor="@android:color/white"
+        android:layout_alignParentBottom="true"
+        android:layout_marginLeft="20dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginBottom="20dp"
+        />
+
 
 </it.francescopezzato.android.MultiparallaxLayout>
