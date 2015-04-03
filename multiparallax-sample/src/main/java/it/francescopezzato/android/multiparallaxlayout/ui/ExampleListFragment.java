@@ -45,6 +45,10 @@ public class ExampleListFragment extends Fragment {
 	public void onViewCreated(View view, Bundle savedInstanceState) {
 		super.onViewCreated(view, savedInstanceState);
 
+		//Keep a reference to the Multiparallax layout
+		mHeader = (MultiparallaxLayout) getActivity().getLayoutInflater().inflate(R.layout.list_header, mListView, false);
+
+		//boilerplate code, ignore
 		mToolbarBackground = new ColorDrawable(getResources().getColor(R.color.green_1));
 
 		int alpha = 0;
@@ -53,7 +57,6 @@ public class ExampleListFragment extends Fragment {
 
 		mAdapter = new ListAdapter(getActivity());
 
-		mHeader = (MultiparallaxLayout) getActivity().getLayoutInflater().inflate(R.layout.list_header, mListView, false);
 		mListView.addHeaderView(mHeader);
 
 		mListView.setAdapter(mAdapter);
@@ -75,7 +78,7 @@ public class ExampleListFragment extends Fragment {
 						if (mHeader != null) {
 
 							//'parallax' bit: inform the MultiparallaxLayout of the current offset
-							mHeader.setOffsetY((int) scrollY);
+							mHeader.setOffset((int) scrollY);
 
 							//Toolbar transparency
 							if (firstChildView.getTop() < 0) {

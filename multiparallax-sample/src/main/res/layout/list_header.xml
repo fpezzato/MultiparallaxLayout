@@ -54,6 +54,7 @@
         android:layout_height="60dp"
         android:background="@drawable/header_logo_background"
         multiparallax:ratioY="-0.3"
+        multiparallax:ratioX="0.1"
         android:gravity="center"
         android:text="S"
         android:textColor="@android:color/white"

@@ -6,10 +6,12 @@ import android.util.AttributeSet;
 import android.util.SparseArray;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Interpolator;
 import android.widget.RelativeLayout;
 
 import it.francescopezzato.android.multiparallax_lib.R;
 
+import static it.francescopezzato.android.Utils.clamp;
 import static it.francescopezzato.android.ViewTreeWalker.newTreeWalker;
 
 /**
@@ -17,22 +19,11 @@ import static it.francescopezzato.android.ViewTreeWalker.newTreeWalker;
  */
 public class MultiparallaxLayout extends RelativeLayout {
 
-
 	private int mOffset;
 
-	private void updateLayout(View view) {
-		if (view.getLayoutParams() instanceof LayoutParams) {
-			LayoutParams layoutParams = (LayoutParams) view.getLayoutParams();
+	ViewTreeWalker mTreeWalker = newTreeWalker();
 
-			//horizontal
-			float newOffset = mOffset * layoutParams.ratioX;
-			view.setTranslationX((int) newOffset);
-
-			//vertical
-			newOffset = mOffset * layoutParams.ratioY;
-			view.setTranslationY((int) newOffset);
-		}
-	}
+	private Interpolator mInterpolator;
 
 	public MultiparallaxLayout(Context context) {
 		super(context);
@@ -44,6 +35,22 @@ public class MultiparallaxLayout extends RelativeLayout {
 
 	public MultiparallaxLayout(Context context, AttributeSet attrs, int defStyleAttr) {
 		super(context, attrs, defStyleAttr);
+	}
+
+	private void updateLayout(View view) {
+		if (view.getLayoutParams() instanceof LayoutParams) {
+			LayoutParams layoutParams = (LayoutParams) view.getLayoutParams();
+
+			float interpolatorAdjustment = mInterpolator != null ? mInterpolator.getInterpolation(computeRatio()) : 1;
+
+			//horizontal
+			float newOffset = mOffset * layoutParams.ratioX * interpolatorAdjustment;
+			view.setTranslationX((int) newOffset);
+
+			//vertical
+			newOffset = mOffset * layoutParams.ratioY * interpolatorAdjustment;
+			view.setTranslationY((int) newOffset);
+		}
 	}
 
 	@Override
@@ -72,30 +79,28 @@ public class MultiparallaxLayout extends RelativeLayout {
 
 	}
 
-	ViewTreeWalker treeWalker = newTreeWalker();
-
 	@Override
 	protected void onLayout(boolean changed, int left, int top, int right, int bottom) {
 		super.onLayout(changed, left, top, right, bottom);
 
-		for (View view : treeWalker.flat(this)) {
+		for (View view : mTreeWalker.flat(this)) {
 			updateLayout(view);
 		}
-
 	}
-/*
-	public void setOffsetX(int offsetX) {
-		if (offsetX != mOffsetY) {
-			requestLayout();
-		}
-		this.mOffsetX = offsetX;
-	}*/
 
-	public void setOffsetY(int offsetY) {
-		if (offsetY != mOffset) {
+	private float computeRatio() {
+		return clamp(mOffset / (float) getHeight(), 0f, 1f);
+	}
+
+	public void setOffset(int offset) {
+		if (offset != mOffset) {
 			requestLayout();
 		}
-		this.mOffset = offsetY;
+		this.mOffset = offset;
+	}
+
+	public void setInterpolator(Interpolator interpolator){
+		this.mInterpolator = interpolator;
 	}
 
 	public static class LayoutParams extends RelativeLayout.LayoutParams {
