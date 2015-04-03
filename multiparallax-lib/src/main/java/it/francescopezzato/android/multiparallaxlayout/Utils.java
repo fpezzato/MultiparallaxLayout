@@ -1,4 +1,4 @@
-package it.francescopezzato.android;
+package it.francescopezzato.android.multiparallaxlayout;
 
 /**
  * Created by francesco on 03/04/2015.

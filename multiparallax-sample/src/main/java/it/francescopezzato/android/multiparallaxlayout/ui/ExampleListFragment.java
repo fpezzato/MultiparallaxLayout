@@ -11,7 +11,8 @@ import android.view.ViewGroup;
 import android.widget.AbsListView;
 import android.widget.ListView;
 
-import it.francescopezzato.android.MultiparallaxLayout;
+import it.francescopezzato.android.multiparallaxlayout.MultiparallaxLayout;
+import it.francescopezzato.android.multiparallaxlayout.Utils;
 import it.francescopezzato.android.multiparallaxlayout.R;
 import it.francescopezzato.android.multiparallaxlayout.data.DataGenerator;
 import rx.Observable;
@@ -86,7 +87,7 @@ public class ExampleListFragment extends Fragment {
 								if (getActivity() instanceof ActionBarActivity) {
 									actionBarHeight = ((ActionBarActivity) getActivity()).getSupportActionBar().getHeight();
 								}
-								float ratio = clamp(scrollY / (mHeader.getHeight() - actionBarHeight), 0f, 1f);
+								float ratio = Utils.clamp(scrollY / (mHeader.getHeight() - actionBarHeight), 0f, 1f);
 								mAlpha = (int) (ratio * 255);
 								mToolbarBackground.setAlpha(mAlpha);
 							}
@@ -102,10 +103,6 @@ public class ExampleListFragment extends Fragment {
 		super.onStart();
 		Observable<String> demoData = new DataGenerator().getDemoData();
 		mAdapter.replace(AppObservable.bindFragment(this, demoData));
-	}
-
-	private static float clamp(float val, float min, float max) {
-		return Math.max(min, Math.min(max, val));
 	}
 
 }

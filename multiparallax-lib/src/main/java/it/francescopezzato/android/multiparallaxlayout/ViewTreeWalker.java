@@ -1,4 +1,4 @@
-package it.francescopezzato.android;
+package it.francescopezzato.android.multiparallaxlayout;
 
 import android.view.View;
 import android.view.ViewGroup;

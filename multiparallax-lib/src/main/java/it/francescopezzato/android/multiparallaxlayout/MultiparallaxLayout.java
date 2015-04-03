@@ -1,4 +1,4 @@
-package it.francescopezzato.android;
+package it.francescopezzato.android.multiparallaxlayout;
 
 import android.content.Context;
 import android.content.res.TypedArray;
@@ -11,8 +11,7 @@ import android.widget.RelativeLayout;
 
 import it.francescopezzato.android.multiparallax_lib.R;
 
-import static it.francescopezzato.android.Utils.clamp;
-import static it.francescopezzato.android.ViewTreeWalker.newTreeWalker;
+import static it.francescopezzato.android.multiparallaxlayout.Utils.clamp;
 
 /**
  * Created by francesco on 22/03/2015.
@@ -21,7 +20,7 @@ public class MultiparallaxLayout extends RelativeLayout {
 
 	private int mOffset;
 
-	ViewTreeWalker mTreeWalker = newTreeWalker();
+	ViewTreeWalker mTreeWalker = ViewTreeWalker.newTreeWalker();
 
 	private Interpolator mInterpolator;
 
