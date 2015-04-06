@@ -22,10 +22,9 @@ import rx.functions.Action1;
  */
 public class ExampleScrollViewFragment extends Fragment {
 
-
-	ObservableScrollView mScrollView;
-	MultiparallaxLayout mMultiparallaxLayout;
-	ViewGroup mContent;
+	private ObservableScrollView mScrollView;
+	private MultiparallaxLayout mMultiparallaxLayout;
+	private  ViewGroup mContent;
 
 	@Override
 	public View onCreateView(final LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {

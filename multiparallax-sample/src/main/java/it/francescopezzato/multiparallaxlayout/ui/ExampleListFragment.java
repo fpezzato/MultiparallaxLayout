@@ -30,7 +30,6 @@ import rx.android.app.AppObservable;
 public class ExampleListFragment extends Fragment {
 
 	private ListAdapter mAdapter;
-
 	private MultiparallaxLayout mParallaxedView;
 	private Drawable mToolbarBackground;
 	private int mAlpha;
