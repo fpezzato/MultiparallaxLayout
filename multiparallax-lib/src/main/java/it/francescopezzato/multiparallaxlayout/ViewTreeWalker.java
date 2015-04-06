@@ -18,10 +18,8 @@ public class ViewTreeWalker {
 	public List<View> flat(ViewGroup root) {
 		List<View> accumulator = new ArrayList<>();
 
-		//skip the root
-		for(View view : getChildren(root)){
-			walkTreeBreadthFirstR(view, accumulator);
-		}
+		walkTreeBreadthFirstR(root, accumulator);
+
 		return accumulator;
 
 	}
@@ -31,7 +29,7 @@ public class ViewTreeWalker {
 		if (currentView instanceof ViewGroup) {
 			ViewGroup currentGroup = (ViewGroup) currentView;
 			if (currentGroup.getChildCount() > 0) {
-				for(View view : getChildren(currentGroup)){
+				for (View view : getChildren(currentGroup)) {
 					walkTreeBreadthFirstR(view, accumulator);
 				}
 			}
@@ -39,7 +37,7 @@ public class ViewTreeWalker {
 		accumulator.add(currentView);
 	}
 
-	private List<View>  getChildren(ViewGroup viewGroup){
+	private List<View> getChildren(ViewGroup viewGroup) {
 		List<View> result = new ArrayList<>(viewGroup.getChildCount());
 		for (int i = 0; i < viewGroup.getChildCount(); i++) {
 			result.add(viewGroup.getChildAt(i));

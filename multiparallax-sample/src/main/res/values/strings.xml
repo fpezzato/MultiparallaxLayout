@@ -12,6 +12,6 @@
 
     <string name="dialog_about_title">Multiparallax layout proof of concept</string>
     <string name="dialog_about_content">This demo-app is just a proof of concept around a layout that supports multiple parallax speeds. More info at &lt;a href="https://github.com/fpezzato/MultiparallaxLayout">fpezzato\'s github&lt;/a></string>
-    <string name="dialog_about_positive">Thanks!</string>
+    <string name="dialog_about_positive">Got it!</string>
 
 </resources>
