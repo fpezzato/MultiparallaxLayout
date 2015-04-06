@@ -10,6 +10,8 @@ import rx.android.internal.Preconditions;
 
 /**
  * Created by francesco on 22/03/2015.
+ *
+ * Use the newView/BindView pattern
  */
 public abstract class BindableAdapter<T> extends BaseAdapter  {
 
@@ -32,7 +34,6 @@ public abstract class BindableAdapter<T> extends BaseAdapter  {
 		}
 		bindView(getItem(position) ,mContext, convertView);
 		return convertView;
-
 	}
 
 	@Override

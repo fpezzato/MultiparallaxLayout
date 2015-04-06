@@ -23,20 +23,22 @@ import rx.android.app.AppObservable;
 
 /**
  * Created by francesco on 22/03/2015.
+ *
+ * This class is a POC of {@link it.francescopezzato.multiparallaxlayout.MultiparallaxLayout}
+ * applied on a listView.
  */
 public class ExampleListFragment extends Fragment {
 
-	private ListView mListView;
 	private ListAdapter mAdapter;
 
-	private MultiparallaxLayout mHeader;
+	private MultiparallaxLayout mParallaxedView;
 	private Drawable mToolbarBackground;
 	private int mAlpha;
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 		View view = inflater.inflate(R.layout.fragment_list, container, false);
-		mListView = (ListView) view.findViewById(android.R.id.list);
+
 		setHasOptionsMenu(true);
 		return view;
 	}
@@ -44,27 +46,14 @@ public class ExampleListFragment extends Fragment {
 	@Override
 	public void onViewCreated(View view, Bundle savedInstanceState) {
 		super.onViewCreated(view, savedInstanceState);
+		final ListView listView = (ListView) view.findViewById(android.R.id.list);
 
 		//Keep a reference to the Multiparallax layout
-		mHeader = (MultiparallaxLayout) getActivity().getLayoutInflater().inflate(R.layout.list_header, mListView, false);
-
-
-		//boilerplate code, ignore
-		mToolbarBackground = new ColorDrawable(getResources().getColor(R.color.green_1));
-
-		int alpha = 0;
-		mToolbarBackground.setAlpha(alpha);
-		((ActionBarActivity) getActivity()).getSupportActionBar().setBackgroundDrawable(mToolbarBackground);
-
-		mAdapter = new ListAdapter(getActivity());
-
-		mListView.addHeaderView(mHeader);
-
-		mListView.setAdapter(mAdapter);
+		mParallaxedView = (MultiparallaxLayout) getActivity().getLayoutInflater().inflate(R.layout.list_header, listView, false);
 
 		//The current implementation of WidgetObservable.listScrollEvents() has a too low event reporting ratio.
 		//Let's go to the bare metal:
-		mListView.setOnScrollListener(new AbsListView.OnScrollListener() {
+		listView.setOnScrollListener(new AbsListView.OnScrollListener() {
 			@Override
 			public void onScrollStateChanged(AbsListView view, int scrollState) {
 				//nop
@@ -73,29 +62,56 @@ public class ExampleListFragment extends Fragment {
 			@Override
 			public void onScroll(AbsListView view, int firstVisibleItem, int visibleItemCount, int totalItemCount) {
 				if (firstVisibleItem == 0) {
-					View firstChildView = mListView.getChildAt(0);
+					View firstChildView = listView.getChildAt(0);
 					if (firstChildView != null) {
 						float scrollY = -firstChildView.getTop();
-						if (mHeader != null) {
+						if (mParallaxedView != null) {
 
 							//'parallax' bit: inform the MultiparallaxLayout of the current offset
-							mHeader.setOffset((int) scrollY);
+							mParallaxedView.setOffset((int) scrollY);
 
-							//Toolbar transparency
-							if (firstChildView.getTop() < 0) {
-								int actionBarHeight = 0;
-								if (getActivity() instanceof ActionBarActivity) {
-									actionBarHeight = ((ActionBarActivity) getActivity()).getSupportActionBar().getHeight();
-								}
-								float ratio = Utils.clamp(scrollY / (mHeader.getHeight() - actionBarHeight), 0f, 1f);
-								mAlpha = (int) (ratio * 255);
-								mToolbarBackground.setAlpha(mAlpha);
-							}
+							//and fade the toolbar
+							handleToolBarFade(firstChildView, scrollY);
 						}
 					}
 				}
 			}
 		});
+
+
+		setUpListAdapter(listView);
+		setupToolbarFade();
+	}
+
+	private void setupToolbarFade() {
+		//boilerplate code, ignore
+		mToolbarBackground = new ColorDrawable(getResources().getColor(R.color.green_1));
+
+		int alpha = 0;
+		mToolbarBackground.setAlpha(alpha);
+		((ActionBarActivity) getActivity()).getSupportActionBar().setBackgroundDrawable(mToolbarBackground);
+	}
+
+	private void handleToolBarFade(View firstChildView, float scrollY) {
+		//Toolbar transparency
+		if (firstChildView.getTop() < 0) {
+			int actionBarHeight = 0;
+			if (getActivity() instanceof ActionBarActivity) {
+				actionBarHeight = ((ActionBarActivity) getActivity()).getSupportActionBar().getHeight();
+			}
+			float ratio = Utils.clamp(scrollY / (mParallaxedView.getHeight() - actionBarHeight), 0f, 1f);
+			mAlpha = (int) (ratio * 255);
+			mToolbarBackground.setAlpha(mAlpha);
+		}
+	}
+
+	private void setUpListAdapter(ListView listView) {
+
+		mAdapter = new ListAdapter(getActivity());
+
+		listView.addHeaderView(mParallaxedView);
+
+		listView.setAdapter(mAdapter);
 	}
 
 	@Override

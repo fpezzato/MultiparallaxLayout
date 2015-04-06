@@ -17,21 +17,35 @@ import it.francescopezzato.multiparallaxlayout.R;
 public class MainActivity extends ActionBarActivity {
 
 	private static final String TAG = MainActivity.class.getCanonicalName();
+	private static final String KEY_CURRENT_FRAGMENT = "KEY_CURRENT_FRAGMENT" ;
 
 	///images from http://pixabay.com/
+	ExampleType mExampleType = ExampleType.AS_LIST;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
 		Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+
 		if (toolbar != null) {
 			setSupportActionBar(toolbar);
 		}
-		getSupportFragmentManager()
-			.beginTransaction().replace(R.id.content_container, new ExampleListFragment()).commit();
+
+
+		if(savedInstanceState != null){
+			if(savedInstanceState.containsKey(KEY_CURRENT_FRAGMENT)){
+				mExampleType = (ExampleType)savedInstanceState.getSerializable(KEY_CURRENT_FRAGMENT);
+			}
+		}
+		navigateTo(mExampleType);
 	}
 
+	@Override
+	protected void onSaveInstanceState(Bundle outState) {
+		super.onSaveInstanceState(outState);
+		outState.putSerializable(KEY_CURRENT_FRAGMENT, mExampleType);
+	}
 
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
@@ -72,6 +86,7 @@ public class MainActivity extends ActionBarActivity {
 	}
 
 	public void navigateTo(ExampleType type ) {
+		mExampleType = type;
 		try {
 			getSupportFragmentManager()
 				.beginTransaction().replace(R.id.content_container, type.mFragmentClass.newInstance()).commit();
