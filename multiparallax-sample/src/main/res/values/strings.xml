@@ -6,6 +6,9 @@
     <string name="action_navigate_to_scroll">Show ScrollView example</string>
     <string name="fragment_list_header_title">I\'m a snake</string>
     <string name="fragment_list_header_subtitle">Yo! a very cool one!</string>
+    <string name="fragment_scroll_explanation">This is a scroll view</string>
+    <string name="lorem_ipsum">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</string>
+
 
     <string name="dialog_about_title">Multiparallax layout proof of concept</string>
     <string name="dialog_about_content">This demo-app is just a proof of concept around a layout that supports multiple parallax speeds. More info at &lt;a href="https://github.com/fpezzato/MultiparallaxLayout">fpezzato\'s github&lt;/a></string>

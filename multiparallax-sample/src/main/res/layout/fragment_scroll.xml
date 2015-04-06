@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <it.francescopezzato.android.multiparallaxlayout.ui.ObservableScrollView
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:multiparallax="http://schemas.android.com/apk/res-auto"
     android:id="@+id/observable_scroll_view"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -11,10 +12,55 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
-
         >
 
-    <include android:id="@+id/fragment_scroll_header" layout="@layout/scroll_view_header" />
+        <it.francescopezzato.android.multiparallaxlayout.MultiparallaxLayout
+            android:id="@+id/fragment_scroll_header"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/list_header_height">
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:src="@drawable/bg_flower"
+                android:scaleType="centerCrop"
+                multiparallax:ratioY="0.96"
+                />
+
+            <TextView
+                style="@style/Base.TextAppearance.AppCompat.Headline"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:id="@+id/list_header_logo"
+                android:background="@drawable/header_logo_background"
+                multiparallax:ratioY="0.5"
+                android:gravity="center"
+                android:text="T"
+                android:textColor="@android:color/white"
+                android:layout_alignParentBottom="true"
+                android:layout_marginLeft="40dp"
+                android:layout_marginStart="40dp"
+                android:layout_marginBottom="30dp"
+                />
+        </it.francescopezzato.android.multiparallaxlayout.MultiparallaxLayout>
+
+        <TextView
+            style="@style/TextAppearance.AppCompat.Headline"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="@string/fragment_scroll_explanation"
+            android:padding="@dimen/small"
+            />
+
+        <TextView
+            style="@style/TextAppearance.AppCompat.Body1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="@string/lorem_ipsum"
+            android:padding="@dimen/small"
+            />
 
     </LinearLayout>
 

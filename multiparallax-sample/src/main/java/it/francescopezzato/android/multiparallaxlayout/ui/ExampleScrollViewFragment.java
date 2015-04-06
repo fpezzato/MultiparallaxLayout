@@ -8,7 +8,7 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.animation.AnticipateInterpolator;
+import android.view.animation.DecelerateInterpolator;
 import android.widget.TextView;
 
 import it.francescopezzato.android.multiparallaxlayout.MultiparallaxLayout;
@@ -30,7 +30,7 @@ public class ExampleScrollViewFragment extends Fragment {
 	public View onCreateView(final LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 		View view = inflater.inflate(R.layout.fragment_scroll, container, false);
 		mMultiparallaxLayout = (MultiparallaxLayout)view.findViewById(R.id.fragment_scroll_header);
-		mMultiparallaxLayout.setInterpolator(new AnticipateInterpolator());
+		mMultiparallaxLayout.setInterpolator(new DecelerateInterpolator());
 		mScrollView = (ObservableScrollView) view.findViewById(R.id.observable_scroll_view);
 		mScrollView.setScrollViewListener(new ObservableScrollView.ScrollViewListener() {
 			@Override

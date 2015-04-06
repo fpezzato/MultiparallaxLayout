@@ -18,6 +18,8 @@ public class MainActivity extends ActionBarActivity {
 
 	private static final String TAG = MainActivity.class.getCanonicalName();
 
+	///images from http://pixabay.com/
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
