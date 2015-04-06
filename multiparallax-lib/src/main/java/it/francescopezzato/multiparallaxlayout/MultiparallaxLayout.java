@@ -63,9 +63,7 @@ public class MultiparallaxLayout extends RelativeLayout {
 		RATIO_Y(R.styleable.MultiparallaxLayout_ratioY);
 
 		static class Static {
-
 			static SparseArray<Attribute> sAttributes = new SparseArray<>();
-
 		}
 
 		Attribute(int reference) {
