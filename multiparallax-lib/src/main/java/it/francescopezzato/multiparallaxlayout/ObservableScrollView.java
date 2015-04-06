@@ -1,11 +1,11 @@
-package it.francescopezzato.android.multiparallaxlayout.ui;
+package it.francescopezzato.multiparallaxlayout;
 
 import android.content.Context;
 import android.util.AttributeSet;
 import android.widget.ScrollView;
 
 /**
- * Created by francesco
+ * This class is a well-known implementation of a scrollview to whom is possibile to add a scroll listener.
  */
 
 public class ObservableScrollView extends ScrollView {

@@ -1,4 +1,4 @@
-package it.francescopezzato.android.multiparallaxlayout.ui;
+package it.francescopezzato.multiparallaxlayout.ui;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -9,7 +9,7 @@ import android.widget.TextView;
 import java.util.ArrayList;
 import java.util.List;
 
-import it.francescopezzato.android.multiparallaxlayout.R;
+import it.francescopezzato.multiparallaxlayout.R;
 import rx.Observable;
 import rx.Subscriber;
 import rx.android.schedulers.AndroidSchedulers;

@@ -5,7 +5,7 @@ android {
     buildToolsVersion "21.1.2"
 
     defaultConfig {
-        applicationId "it.francescopezzato.android.multiparallaxlayout"
+        applicationId "it.francescopezzato.multiparallaxlayout"
         minSdkVersion 14
         targetSdkVersion 21
         versionCode 1

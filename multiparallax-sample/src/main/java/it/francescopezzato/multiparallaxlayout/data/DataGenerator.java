@@ -1,4 +1,4 @@
-package it.francescopezzato.android.multiparallaxlayout.data;
+package it.francescopezzato.multiparallaxlayout.data;
 
 import rx.Observable;
 import rx.functions.Func1;

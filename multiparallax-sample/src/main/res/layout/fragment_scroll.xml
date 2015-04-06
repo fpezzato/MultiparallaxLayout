@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<it.francescopezzato.android.multiparallaxlayout.ui.ObservableScrollView
+<it.francescopezzato.multiparallaxlayout.ObservableScrollView
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:multiparallax="http://schemas.android.com/apk/res-auto"
     android:id="@+id/observable_scroll_view"
@@ -14,7 +14,7 @@
         android:orientation="vertical"
         >
 
-        <it.francescopezzato.android.multiparallaxlayout.MultiparallaxLayout
+        <it.francescopezzato.multiparallaxlayout.MultiparallaxLayout
             android:id="@+id/fragment_scroll_header"
             android:layout_width="match_parent"
             android:layout_height="@dimen/list_header_height">
@@ -42,7 +42,7 @@
                 android:layout_marginStart="40dp"
                 android:layout_marginBottom="30dp"
                 />
-        </it.francescopezzato.android.multiparallaxlayout.MultiparallaxLayout>
+        </it.francescopezzato.multiparallaxlayout.MultiparallaxLayout>
 
         <TextView
             style="@style/TextAppearance.AppCompat.Headline"
@@ -64,4 +64,4 @@
 
     </LinearLayout>
 
-</it.francescopezzato.android.multiparallaxlayout.ui.ObservableScrollView>
+</it.francescopezzato.multiparallaxlayout.ObservableScrollView>

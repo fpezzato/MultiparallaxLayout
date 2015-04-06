@@ -1,4 +1,4 @@
-package it.francescopezzato.android.multiparallaxlayout.ui;
+package it.francescopezzato.multiparallaxlayout.ui;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -11,8 +11,9 @@ import android.view.ViewGroup;
 import android.view.animation.DecelerateInterpolator;
 import android.widget.TextView;
 
-import it.francescopezzato.android.multiparallaxlayout.MultiparallaxLayout;
-import it.francescopezzato.android.multiparallaxlayout.R;
+import it.francescopezzato.multiparallaxlayout.MultiparallaxLayout;
+import it.francescopezzato.multiparallaxlayout.ObservableScrollView;
+import it.francescopezzato.multiparallaxlayout.R;
 import rx.Observable;
 import rx.functions.Action1;
 

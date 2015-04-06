@@ -1,4 +1,4 @@
-package it.francescopezzato.android.multiparallaxlayout.ui;
+package it.francescopezzato.multiparallaxlayout.ui;
 
 import android.content.Context;
 import android.view.LayoutInflater;

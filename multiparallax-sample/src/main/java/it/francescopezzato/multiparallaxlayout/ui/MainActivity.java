@@ -1,4 +1,4 @@
-package it.francescopezzato.android.multiparallaxlayout.ui;
+package it.francescopezzato.multiparallaxlayout.ui;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -11,7 +11,7 @@ import android.view.MenuItem;
 
 import com.afollestad.materialdialogs.MaterialDialog;
 
-import it.francescopezzato.android.multiparallaxlayout.R;
+import it.francescopezzato.multiparallaxlayout.R;
 
 
 public class MainActivity extends ActionBarActivity {
@@ -59,7 +59,6 @@ public class MainActivity extends ActionBarActivity {
 			.content(content)
 			.positiveText(R.string.dialog_about_positive)
 			.show();
-
 	}
 
 	public enum ExampleType  {
@@ -74,15 +73,12 @@ public class MainActivity extends ActionBarActivity {
 
 	public void navigateTo(ExampleType type ) {
 		try {
-
-
 			getSupportFragmentManager()
 				.beginTransaction().replace(R.id.content_container, type.mFragmentClass.newInstance()).commit();
 		} catch (InstantiationException e) {
 			Log.e(TAG,"Unable to instantiate a child fragment",e);
-
 		} catch (IllegalAccessException e) {
-			Log.e(TAG,"Unable to reach a child fragment",e);
+			Log.e(TAG, "Unable to reach a child fragment", e);
 		}
 	}
 }

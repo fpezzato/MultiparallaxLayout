@@ -1,4 +1,4 @@
-package it.francescopezzato.android.multiparallaxlayout;
+package it.francescopezzato.multiparallaxlayout;
 
 import android.app.Application;
 import android.test.ApplicationTestCase;

@@ -1,4 +1,4 @@
-package it.francescopezzato.android.multiparallaxlayout.ui;
+package it.francescopezzato.multiparallaxlayout.ui;
 
 import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
@@ -14,10 +14,10 @@ import android.view.ViewGroup;
 import android.widget.AbsListView;
 import android.widget.ListView;
 
-import it.francescopezzato.android.multiparallaxlayout.MultiparallaxLayout;
-import it.francescopezzato.android.multiparallaxlayout.R;
-import it.francescopezzato.android.multiparallaxlayout.Utils;
-import it.francescopezzato.android.multiparallaxlayout.data.DataGenerator;
+import it.francescopezzato.multiparallaxlayout.MultiparallaxLayout;
+import it.francescopezzato.multiparallaxlayout.R;
+import it.francescopezzato.multiparallaxlayout.Utils;
+import it.francescopezzato.multiparallaxlayout.data.DataGenerator;
 import rx.Observable;
 import rx.android.app.AppObservable;
 

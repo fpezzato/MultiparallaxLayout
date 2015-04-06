@@ -1,4 +1,4 @@
-package it.francescopezzato.android.multiparallaxlayout;
+package it.francescopezzato.multiparallaxlayout;
 
 import android.content.Context;
 import android.content.res.TypedArray;
@@ -11,7 +11,7 @@ import android.widget.RelativeLayout;
 
 import it.francescopezzato.android.multiparallax_lib.R;
 
-import static it.francescopezzato.android.multiparallaxlayout.Utils.clamp;
+import static it.francescopezzato.multiparallaxlayout.Utils.clamp;
 
 /**
  * Created by francesco on 22/03/2015.
