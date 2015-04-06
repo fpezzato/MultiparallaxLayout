@@ -59,4 +59,9 @@ mMultiparallaxLayout.setInterpolator(new DecelerateInterpolator());
 ```
 
 
-![Multiparallax layout in ScrollView](/../screenshots/multiparallaxDemo07.gif?raw=true "Example in a ScrollView")  
+![Multiparallax layout in ScrollView](/../screenshots/multiparallaxDemo07.gif?raw=true "Example in a ScrollView") 
+
+
+
+
+Thanks to pixabay.com for the images used in the sample code. 
