@@ -6,14 +6,17 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.ActionBarActivity;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AbsListView;
 import android.widget.ListView;
 
 import it.francescopezzato.android.multiparallaxlayout.MultiparallaxLayout;
-import it.francescopezzato.android.multiparallaxlayout.Utils;
 import it.francescopezzato.android.multiparallaxlayout.R;
+import it.francescopezzato.android.multiparallaxlayout.Utils;
 import it.francescopezzato.android.multiparallaxlayout.data.DataGenerator;
 import rx.Observable;
 import rx.android.app.AppObservable;
@@ -31,14 +34,10 @@ public class ExampleListFragment extends Fragment {
 	private int mAlpha;
 
 	@Override
-	public void onCreate(Bundle savedInstanceState) {
-		super.onCreate(savedInstanceState);
-	}
-
-	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 		View view = inflater.inflate(R.layout.fragment_list, container, false);
 		mListView = (ListView) view.findViewById(android.R.id.list);
+		setHasOptionsMenu(true);
 		return view;
 	}
 
@@ -48,6 +47,7 @@ public class ExampleListFragment extends Fragment {
 
 		//Keep a reference to the Multiparallax layout
 		mHeader = (MultiparallaxLayout) getActivity().getLayoutInflater().inflate(R.layout.list_header, mListView, false);
+
 
 		//boilerplate code, ignore
 		mToolbarBackground = new ColorDrawable(getResources().getColor(R.color.green_1));
@@ -105,4 +105,25 @@ public class ExampleListFragment extends Fragment {
 		mAdapter.replace(AppObservable.bindFragment(this, demoData));
 	}
 
+	@Override
+	public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+		inflater.inflate(R.menu.fragment_list_menu, menu);
+	}
+
+	@Override
+	public boolean onOptionsItemSelected(MenuItem item) {
+		boolean result = false;
+		switch (item.getItemId()) {
+			case R.id.action_navigate_scroll:
+				if (getActivity() != null) {
+					mToolbarBackground.setAlpha(255);
+					((MainActivity) getActivity()).navigateTo(MainActivity.ExampleType.AS_SCROLL_VIEW);
+					result = true;
+				}
+				break;
+			default:
+				break;
+		}
+		return result;
+	}
 }

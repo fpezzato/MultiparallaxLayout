@@ -14,8 +14,6 @@
         multiparallax:ratioY="0.85"
         />
 
-
-
     <View
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -52,6 +50,7 @@
         style="@style/Base.TextAppearance.AppCompat.Headline"
         android:layout_width="60dp"
         android:layout_height="60dp"
+        android:id="@+id/list_header_logo"
         android:background="@drawable/header_logo_background"
         multiparallax:ratioY="-0.3"
         multiparallax:ratioX="0.1"

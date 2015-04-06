@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<it.francescopezzato.android.multiparallaxlayout.ui.ObservableScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/observable_scroll_view"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    >
+
+    <LinearLayout
+        android:id="@+id/fragment_scroll_content"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+
+        >
+
+    <include android:id="@+id/fragment_scroll_header" layout="@layout/scroll_view_header" />
+
+    </LinearLayout>
+
+</it.francescopezzato.android.multiparallaxlayout.ui.ObservableScrollView>

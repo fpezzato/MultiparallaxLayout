@@ -1,9 +1,11 @@
 package it.francescopezzato.android.multiparallaxlayout.ui;
 
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.widget.Toolbar;
 import android.text.Html;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 
@@ -13,6 +15,8 @@ import it.francescopezzato.android.multiparallaxlayout.R;
 
 
 public class MainActivity extends ActionBarActivity {
+
+	private static final String TAG = MainActivity.class.getCanonicalName();
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -54,5 +58,29 @@ public class MainActivity extends ActionBarActivity {
 			.positiveText(R.string.dialog_about_positive)
 			.show();
 
+	}
+
+	public enum ExampleType  {
+		AS_LIST(ExampleListFragment.class), AS_SCROLL_VIEW(ExampleScrollViewFragment.class);
+
+		private Class<? extends Fragment> mFragmentClass;
+
+		ExampleType(Class<? extends Fragment> fragmentClass) {
+			this.mFragmentClass = fragmentClass;
+		}
+	}
+
+	public void navigateTo(ExampleType type ) {
+		try {
+
+
+			getSupportFragmentManager()
+				.beginTransaction().replace(R.id.content_container, type.mFragmentClass.newInstance()).commit();
+		} catch (InstantiationException e) {
+			Log.e(TAG,"Unable to instantiate a child fragment",e);
+
+		} catch (IllegalAccessException e) {
+			Log.e(TAG,"Unable to reach a child fragment",e);
+		}
 	}
 }

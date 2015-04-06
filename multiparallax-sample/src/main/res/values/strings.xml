@@ -2,6 +2,8 @@
     <string name="app_name">MultiparallaxLayout</string>
 
     <string name="action_about">About</string>
+    <string name="action_navigate_to_list">Show ListView example</string>
+    <string name="action_navigate_to_scroll">Show ScrollView example</string>
     <string name="fragment_list_header_title">I\'m a snake</string>
     <string name="fragment_list_header_subtitle">Yo! a very cool one!</string>
 
